@@ -1195,7 +1195,7 @@ async def test_streamable_http_client_resumption(event_server: tuple[SimpleEvent
         headers[MCP_PROTOCOL_VERSION_HEADER] = captured_protocol_version
 
     async with create_mcp_http_client(headers=headers) as httpx_client:
-        async with streamable_http_client(f"{server_url}/mcp", httpx_client=httpx_client) as (
+        async with streamable_http_client(f"{server_url}/mcp", http_client=httpx_client) as (
             read_stream,
             write_stream,
             _,
@@ -1408,7 +1408,7 @@ async def test_streamablehttp_request_context_propagation(context_aware_server: 
     }
 
     async with create_mcp_http_client(headers=custom_headers) as httpx_client:
-        async with streamable_http_client(f"{basic_server_url}/mcp", httpx_client=httpx_client) as (
+        async with streamable_http_client(f"{basic_server_url}/mcp", http_client=httpx_client) as (
             read_stream,
             write_stream,
             _,
@@ -1446,7 +1446,7 @@ async def test_streamablehttp_request_context_isolation(context_aware_server: No
         }
 
         async with create_mcp_http_client(headers=headers) as httpx_client:
-            async with streamable_http_client(f"{basic_server_url}/mcp", httpx_client=httpx_client) as (
+            async with streamable_http_client(f"{basic_server_url}/mcp", http_client=httpx_client) as (
                 read_stream,
                 write_stream,
                 _,
